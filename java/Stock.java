@@ -13,9 +13,9 @@ public class Stock {
     public List<StockEntry> scrape(String urlStr) {
         try {
             Document document = Jsoup.connect(urlStr).get();
-            Element table = document.select("table").get(1);
-            Element tbody = table.select("tbody").get(0);
-            Elements rows = tbody.select("tr");
+            Elements rows = document.select("table").get(1)
+                    .select("tbody").get(0)
+                    .select("tr");
             List<StockEntry> stocks = new ArrayList<>();
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
 
@@ -25,7 +25,6 @@ public class Stock {
                 Elements columns = row.select("td");
                 stockEntry.setDate(simpleDateFormat.parse(columns.get(0).text()));
                 stockEntry.setValue(new Float(columns.get(1).text().substring(1)));
-                System.out.println(stockEntry);
                 stocks.add(stockEntry);
             }
             return stocks;
