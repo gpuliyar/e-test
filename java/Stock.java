@@ -16,9 +16,7 @@ public class Stock {
 
         try {
             Document document = Jsoup.connect(urlStr).get();
-            Elements rows = document.select("table").get(1)
-                    .select("tbody").get(0)
-                    .select("tr");
+            Elements rows = document.select("table").get(1).select("tr");
 
             for (Element row : rows) {
                 Elements columns = row.select("td");
