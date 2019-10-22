@@ -1,5 +1,6 @@
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
@@ -19,8 +20,8 @@ public class Stock {
                     .select("tbody").get(0)
                     .select("tr");
 
-            for (int cntrIndex = 0; cntrIndex < rows.size(); cntrIndex++) {
-                Elements columns = rows.get(cntrIndex).select("td");
+            for (Element row : rows) {
+                Elements columns = row.select("td");
                 stocks.add(new StockEntry(
                         simpleDateFormat.parse(columns.get(0).text()),
                         new Float(columns.get(1).text().substring(1))));
@@ -32,7 +33,7 @@ public class Stock {
         return stocks;
     }
 
-    public static  void main(String[] args) {
+    public static void main(String[] args) {
         Stock stock = new Stock();
         stock.scrape("http://localhost:8989/stocks.html");
     }
