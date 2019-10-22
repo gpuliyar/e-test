@@ -4,6 +4,11 @@ public class StockEntry {
     Date date;
     Float value;
 
+    public StockEntry(Date date, Float value) {
+        this.date = date;
+        this.value = value;
+    }
+
     @Override
     public String toString() {
         return "StockEntry{" +
