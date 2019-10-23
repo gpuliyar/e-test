@@ -11,10 +11,7 @@ public class StockEntry {
 
     @Override
     public String toString() {
-        return "StockEntry{" +
-                "date=" + date +
-                ", value=" + value +
-                '}';
+        return "StockEntry{" + "date=" + date + ", value=" + value + '}';
     }
 
     public Date getDate() {
